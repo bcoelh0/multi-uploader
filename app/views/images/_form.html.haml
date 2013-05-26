@@ -1,0 +1,4 @@
+= form_for @image, :multipart => true do |f|
+	= f.file_field 'attachment', multiple: true, name: "image[attached_assets_attrs][][asset]"
+	.actions
+		= f.submit 'Save'
