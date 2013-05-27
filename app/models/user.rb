@@ -17,12 +17,12 @@ class User < ActiveRecord::Base
 	def set name, blogs
 		self.tumblr_name = name
 		cnt = 1
-		self.blogs = '{'
+		self.blogs = ''
 		blogs.each do |blog|
-			self.blogs << ':blog_'+cnt.to_s+' => "'+blog.name+'",'
+			self.blogs <<  blog.name+','
 			cnt += 1
 		end
-		self.blogs[self.blogs.length-1] = '}'
+		self.blogs[self.blogs.length-1] = ''
 		self.blogs.gsub('\n','')
 	end
 

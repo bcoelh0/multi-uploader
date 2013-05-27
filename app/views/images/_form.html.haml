@@ -1,7 +1,9 @@
-= form_for @image, :multipart => true do |f|
-	%label Choose your blog
-	=f.select 'blogs', 'blog_name' ,@blogs.each { |blog| ['1', blog] }
-	%label Upload your images here
-	= f.file_field 'attachment', multiple: true, name: "image[attached_assets_attrs][][asset]"
-	
-	%button.btn.btn-success.btn-large{:type => "submit"} Submit To Queue
+= form_tag @image, :multipart => true
+%label Choose your blog
+=#f.collection_select('blogs', 'blog_name', @blogs, :first, :last)
+=# f.select 'blogs', 'blog_name' ,@blogs.each { |blog| ['1', blog] }
+= select :blog, :name ,@blogs
+%label Upload your images here
+= file_field_tag 'attachment', multiple: true, name: "image[attached_assets_attrs][][asset]"
+
+%button.btn.btn-success.btn-large{:type => "submit"} Submit To Queue

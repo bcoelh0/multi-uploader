@@ -14,10 +14,8 @@ class ImagesController < ApplicationController
   end
 
   # GET /images/new
-  def new
-    user = User.find(session[:user_id])
-    @blogs = eval(user.blogs)
-    print @blogs
+  def new 
+    @blogs = User.find(session[:user_id]).blogs.split(',')
     @image = Image.new
   end
 
@@ -29,8 +27,7 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     #debugger
-    blog = 'justthebeat'
-
+    blog = blog_params[:name]
     @user = User.find(session[:user_id])
 
     params[:image][:attached_assets_attrs].each do |item|
@@ -38,7 +35,7 @@ class ImagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render text: 'All posted.' , notice: 'Image was successfully created.' }
+      format.html { render action: 'done' }
       format.json { render text: 'All posted.', status: :created, location: @image }
     end
   end
@@ -67,6 +64,9 @@ class ImagesController < ApplicationController
     end
   end
 
+  def done
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image
@@ -76,5 +76,9 @@ class ImagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit!
+    end
+
+    def blog_params
+      params.require(:blog).permit(:name)
     end
 end
