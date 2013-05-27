@@ -10,15 +10,14 @@ class ImagesController < ApplicationController
   # GET /images/1
   # GET /images/1.json
   def show
-    @images = Image.where(:user_id => 1)
-    @images.each do |image|
-      send_data image.data, :type => 'image/png', :disposition => 'inline'
-    end
+    #@images = Image.where(:user_id => 1)
   end
 
   # GET /images/new
   def new
-    session[:user] = User.find(1) #####TESTE
+    user = User.find(session[:user_id])
+    @blogs = eval(user.blogs)
+    print @blogs
     @image = Image.new
   end
 
@@ -30,21 +29,17 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     #debugger
+    blog = 'justthebeat'
 
-    @image = Image.new(image_params)
-    
+    @user = User.find(session[:user_id])
+
     params[:image][:attached_assets_attrs].each do |item|
-      ImgGroup.create_image item[:asset], session[:user]
+      ImgGroup.post item[:asset], @user, blog
     end
 
     respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @image }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
+      format.html { render text: 'All posted.' , notice: 'Image was successfully created.' }
+      format.json { render text: 'All posted.', status: :created, location: @image }
     end
   end
 

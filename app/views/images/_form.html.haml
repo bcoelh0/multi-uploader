@@ -1,4 +1,7 @@
 = form_for @image, :multipart => true do |f|
+	%label Choose your blog
+	=f.select 'blogs', 'blog_name' ,@blogs.each { |blog| ['1', blog] }
+	%label Upload your images here
 	= f.file_field 'attachment', multiple: true, name: "image[attached_assets_attrs][][asset]"
-	.actions
-		= f.submit 'Save'
+	
+	%button.btn.btn-success.btn-large{:type => "submit"} Submit To Queue

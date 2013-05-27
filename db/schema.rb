@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526155615) do
+ActiveRecord::Schema.define(version: 20130526214626) do
 
   create_table "images", force: true do |t|
     t.string   "filename"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 20130526155615) do
     t.string   "captation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "link"
+    t.string   "tags"
+    t.text     "blogs"
   end
 
 end

@@ -1,10 +1,12 @@
 = form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+	%label Email
+	=f.text_field :email, :class=> 'input.input-xlarge', :placeholder => "email address", :type => "text"
+	%label Captation for the images (can include HTML)
+	=f.text_area :captation, :placeholder => "optional"
+	%label Place a click through link for the images 
+	=f.text_field :link, :class=> 'input.input-xlarge', :placeholder => "optional", :type => "text"
+	%label Tags (comma separated)
+	=f.text_field :tags, :class=> 'input.input-xlarge', :placeholder => "optional", :type => "text"
+	%label
+	%br
+	%button.btn.btn-success.btn-large{:type => "submit"} Submit
