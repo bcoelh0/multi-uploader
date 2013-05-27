@@ -39,7 +39,7 @@ end
 
 gem "haml", "~> 4.0.3"
 gem "haml-rails", "~> 0.4"
-gem "devise"
+#gem "devise"
 gem "omniauth-tumblr", "~> 1.1"
 gem "tumblr_client", "~> 0.7.2"
 #gem "mechanize", "~> 2.7.0"
