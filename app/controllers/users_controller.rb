@@ -12,6 +12,12 @@ class UsersController < ApplicationController
       redirect_to new_user_path
     end
   end
+
+  def sign_out
+    reset_session
+    redirect_to '/'
+  end
+
   # GET /users
   # GET /users.json
   def index

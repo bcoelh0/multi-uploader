@@ -1,7 +1,11 @@
 MultiUpload::Application.routes.draw do
   root "home#index"
 
+  get '/about', to: 'home#about'
+
   get '/auth/:provider/callback', to: 'users#check'
+
+  get '/signout', to: 'users#sign_out'
 
   resources :images
 

@@ -1,31 +1,13 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      %a.brand{:href => "#"} TmblrBot
-      .navbar-content
-        %ul.nav
-          %li.active
-            %a{:href => "#"} Home
-          %li
-            %a{:href => "#"} About
-      .btn-group.pull-right
-        %ul.dropdown-menu
-          %li
-            %a{:href => "#"} First Link
-          %li
-            %a{:href => "#"} Second Link
-          %li
-            %a{:href => "#"} Third Link
-      .btn-group.open
 .container
   .hero-unit.hidden-phone
     %h1 Welcome to TumblrPostr
     %p Turn your blog into a posting machine.
     %p
-    %button.btn.btn-primary.btn-large{:type => "submit"}
-      Sign In with Tumblr
+    %a{:href => "/auth/tumblr"}
+      %button.btn.btn-primary.btn-large
+        Sign In with Tumblr
       %br/
-  %a.btn.btn-large.btn-primary.btn-block.visible-phone{:href => "#"}
+  %a.btn.btn-large.btn-primary.btn-block.visible-phone{:href => "auth/tumblr"}
     %span.btn-label Sign Up Today!
   .row.main-features
     .span4
@@ -34,22 +16,24 @@
         %p
           Post images automatically to Tumblr, promote your blog with great content
           while you sleep.
-        %a.btn.btn-info{:href => "#"}
-          %span.btn-label Find Out More
+        %a{:href => "/about"}
+          %button.btn.btn-info
+            %span.btn-label Find Out More
     .span4
       .well
         %h3 Have Real Followers
         %p
           Real interesting content will drive interested followers! Build up your
           audience with our help.
-        %a.btn.btn-info{:href => "#"}
-          %span.btn-label Find Out More
+        %a{:href => "/about"}
+          %button.btn.btn-info
+            %span.btn-label Find Out More
     .span4
       .well
         %h3 Free or Paid
         %p
           You can get our forever free plan or choose something more appropriated
           for your needs. 
-        %a.btn.btn-info{:href => "#"}
-          %span.btn-label Find Out More
-  %p.pull-right.muted You can always contact us at email@email.com
+        %a{:href => "/about"}
+          %button.btn.btn-info
+            %span.btn-label Find Out More

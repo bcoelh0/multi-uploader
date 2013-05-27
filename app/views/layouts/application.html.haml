@@ -2,7 +2,6 @@
 %html(lang="en")
   %head
     %meta(charset="utf-8")
-    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     %title= content_for?(:title) ? yield(:title) : "tmblrBot"
     = csrf_meta_tags
@@ -27,13 +26,51 @@
 
 
   %body
-    
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand{:href => "/"} TmblrBot
+          .navbar-content
+            %ul.nav
+              -if session[:user_id]
+                -if params[:action] == 'new'
+                  %li.active
+                    %a{:href => "/images/new"} Upload
+                -else
+                  %li
+                    %a{:href => "/images/new"} Upload
+
+              -else
+                -if params[:action] == 'index'
+                  %li.active
+                    %a{:href => "/"} Home
+                -else
+                  %li
+                    %a{:href => "/"} Home
+
+
+              -if params[:action] == 'about'  
+                %li.active
+                  %a{:href => "/about"} About
+              -else
+                %li
+                  %a{:href => "/about"} About
+          -if session[:user_id] 
+            .btn-group.pull-right
+              %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Account 
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "/users/#{session[:user_id]}/edit"} Settings
+                %li
+                  %a{:href => "/signout"} Sign Out
     .span9
       = bootstrap_flash
       = yield
     
-    %footer
-      %p 
+      %footer
+        %p.pull-left.muted You can always contact us at email@email.com 
     /
       Javascripts
       \==================================================
