@@ -16,7 +16,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'sqlite3'
+
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -30,8 +31,14 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-group :development, :test do
-  gem 'sqlite3'
+
+group :production do
+  gem 'thin'
+  gem "pg"
+end
+
+group :development do
+  gem "sqlite3"
   gem "capybara", "~> 2.1.0"
   gem 'rspec-rails'
   gem "database_cleaner", "~> 1.0.1"
